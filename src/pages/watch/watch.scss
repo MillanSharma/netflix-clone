@@ -1,0 +1,32 @@
+.watch {
+  width: 100w;
+  height: 100vh;
+
+  .back {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .iframe-container {
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  }
+}
