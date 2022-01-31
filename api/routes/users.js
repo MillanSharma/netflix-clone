@@ -44,7 +44,7 @@ router.delete("/:id", verify, async (req, res) => {
   }
 });
 // GET
-router.get("/find/:id", verify, async (req, res) => {
+router.get("/find/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     const { password, ...info } = user._doc;
@@ -54,7 +54,7 @@ router.get("/find/:id", verify, async (req, res) => {
   }
 });
 // GET ALL
-router.delete("/?new=true", verify, async (req, res) => {
+router.get("/", verify, async (req, res) => {
   const query = req.query.new;
   if (req.user.isAdmin) {
     try {
@@ -101,9 +101,9 @@ router.get("/stats", async (req, res) => {
         },
       },
     ]);
-    res.status.json(data);
-  } catch {
-    res.status(500).json(error);
+    res.status(200).json(data);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 

@@ -2,6 +2,7 @@ import { useState } from "react";
 import React from "react";
 import "./navbar.scss";
 import { ArrowDropDown, Notifications, Search } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   window.onscroll = () => {
@@ -17,9 +18,18 @@ const Navbar = () => {
             src="https://1000logos.net/wp-content/uploads/2017/05/Netflix-Logo.png"
             alt=""
           />
+          <Link to="/" className="link">
           <span>Homepage</span>
+          </Link>
+          
+          <Link to="/series" className="link">
           <span>Series</span>
-          <span>Movies</span>
+          </Link>
+
+          <Link to="/movies" className="link">
+            <span>Movies</span>
+            </Link>
+            
           <span>New and Popular</span>
           <span>My List</span>
         </div>

@@ -5,11 +5,30 @@ import {
   ThumbUpAltOutlined,
 } from "@material-ui/icons";
 import "./listitem.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-export default function Listitem({ index }) {
+export default function Listitem({ index, item }) {
   const [isHovered, setIsHovered] = useState(false);
-  // const trailer =
+  const [movie, setMovie] = useState({});
+  useEffect(() => {
+    const getMovie = async () => {
+      try {
+        const res = await axios.get("/movies/find/" + item, {
+          headers: {
+            token:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjc0ZWE2MmYyOGM4ODY2N2ZmYTVhOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MzYzMDQ1MywiZXhwIjoxNjQ0MDYyNDUzfQ.kd-14RQjmQk4ok0Kn9PtYgmMvdw3CWzJCLLgVFCzbEA",
+          },
+        });
+        setMovie(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getMovie();
+  }, [item]);
+
+  const trailer = movie.trailer;
   //   "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4";
   return (
     <div
@@ -18,10 +37,7 @@ export default function Listitem({ index }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <img
-        src="https://www.nme.com/wp-content/uploads/2017/09/narcos_press_1000-696x456.jpg"
-        alt=""
-      />
+      <img src={movie.img} alt="" />
       {isHovered && (
         <>
           <div>
@@ -43,15 +59,12 @@ export default function Listitem({ index }) {
               <ThumbDownAltOutlined className="icon" />
             </div>
             <div className="itemInfoTop">
-              <span>1 hour 14 mins</span>
-              <span className="limit">+18</span>
-              <span>1999</span>
+              <span>{movie.duration}</span>
+              <span className="limit">{movie.limit}</span>
+              <span>{movie.year}</span>
             </div>
-            <div className="desc">
-              Lorem ipsum dolor sit ametsto. Quis, rem. Sint laboriosam
-              reprehenderit quo
-            </div>
-            <div className="genre">Action</div>
+            <div className="desc">+{movie.desc}</div>
+            <div className="genre">{movie.genre}</div>
           </div>
         </>
       )}
