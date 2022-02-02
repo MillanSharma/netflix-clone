@@ -17,6 +17,7 @@ import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext/AuthContext";
+import {MovieContext} from "./context/movieContext/MovieContext"
 
 function App() {
   const { user } = useContext(AuthContext);

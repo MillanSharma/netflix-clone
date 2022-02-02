@@ -8,7 +8,7 @@ ReactDOM.render(
   <React.StrictMode>
     <AuthContextProvider>
       <MovieContextProvider>
-        <App />
+      <App />
       </MovieContextProvider>
     </AuthContextProvider>
   </React.StrictMode>,
