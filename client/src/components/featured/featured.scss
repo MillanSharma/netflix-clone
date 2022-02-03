@@ -37,9 +37,15 @@
 
     img {
       width: 400px;
+      @include mobile {
+        width: 80vw;
+      }
     }
     .desc {
       margin: 20px 0px;
+      @include mobile {
+        width: 60vw;
+      }
     }
     .buttons {
       display: flex;
