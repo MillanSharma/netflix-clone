@@ -1,42 +1,35 @@
-import {
-  Add,
-  PlayArrow,
-  ThumbDownAltOutlined,
-  ThumbUpAltOutlined,
-} from "@material-ui/icons";
 import "./listitem.scss";
+import {
+  PlayArrow,
+  Add,
+  ThumbUpAltOutlined,
+  ThumbDownOutlined,
+} from "@material-ui/icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export default function Listitem({ index, item }) {
+export default function ListItem({ index, item }) {
   const [isHovered, setIsHovered] = useState(false);
   const [movie, setMovie] = useState({});
-  // const embedString = (string) => {
-  //   const embed = "https://www.youtube.com/embed/";
-  //   const code = string.split("/")[3];
-  //   return embed + code;
-  // };
-  // console.log(item);
+
   useEffect(() => {
     const getMovie = async () => {
       try {
         const res = await axios.get("/movies/find/" + item, {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxZjc0ZWE2MmYyOGM4ODY2N2ZmYTVhOSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0MzYzMDQ1MywiZXhwIjoxNjQ0MDYyNDUzfQ.kd-14RQjmQk4ok0Kn9PtYgmMvdw3CWzJCLLgVFCzbEA",
+              "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
           },
         });
         setMovie(res.data);
-      } catch (error) {
-        // console.log(error);
+      } catch (err) {
+        console.log(err);
       }
     };
     getMovie();
   }, [item]);
-  // const trailer = [];
-  // trailer = embedString(movie.trailer);
-  // console.log(typeof movie);
+
   return (
     <Link to={{ pathname: "/watch", movie: movie }}>
       <div
@@ -45,37 +38,36 @@ export default function Listitem({ index, item }) {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <img src={movie.img} alt="" />
+        <img src={movie?.imgSm} alt="" />
         {isHovered && (
           <>
-            <div>
-              {/* <video src={trailer} autoPlay={true} loop /> */}
-
-              <iframe
-                className="video"
-                // src={
-                //   trailer+
-                //   "?autoplay=1&loop=1&showinfo=0&rel=0&iv_load_policy=3&fs=0&color=white&autohide=0&controls=0&disablekb=1&mute=1"
-                // }
-                src="https://www.youtube.com/embed/T6DJcgm3wNY?autoplay=1&loop=1&showinfo=0&rel=0&iv_load_policy=3&fs=0&color=white&autohide=0&controls=0&disablekb=1&mute=1"
-                // width="250"
-                // height="140"
-                frameborder="0"
-              ></iframe>
-            </div>
+            <iframe
+              className="video"
+              src={
+                movie.trailer +
+                "?autoplay=1&loop=1&showinfo=0&rel=0&iv_load_policy=3&fs=0&color=white&autohide=0&controls=0&disablekb=1&mute=1"
+              }
+              width="350"
+              height="140"
+              frameborder="0"
+              // src="https://www.youtube.com/embed/T6DJcgm3wNY?autoplay=1&loop=1&showinfo=0&rel=0&iv_load_policy=3&fs=0&color=white&autohide=0&controls=0&disablekb=1&mute=1"
+              // width="250"
+              // height="140"
+              // frameborder="0"
+            ></iframe>
             <div className="itemInfo">
               <div className="icons">
                 <PlayArrow className="icon" />
                 <Add className="icon" />
                 <ThumbUpAltOutlined className="icon" />
-                <ThumbDownAltOutlined className="icon" />
+                <ThumbDownOutlined className="icon" />
               </div>
               <div className="itemInfoTop">
                 <span>{movie.duration}</span>
-                <span className="limit">{movie.limit}</span>
+                <span className="limit">+{movie.limit}</span>
                 <span>{movie.year}</span>
               </div>
-              <div className="desc">+{movie.desc}</div>
+              <div className="desc">{movie.desc}</div>
               <div className="genre">{movie.genre}</div>
             </div>
           </>

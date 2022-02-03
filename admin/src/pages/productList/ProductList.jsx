@@ -33,7 +33,7 @@ export default function ProductList() {
     { field: "genre", headerName: "Genre", width: 120 },
     { field: "year", headerName: "Year", width: 120 },
     { field: "limit", headerName: "Limit", width: 120 },
-    { field: "isSeries", headerName: "IsSeries", width: 120 },
+    { field: "inSeries", headerName: "IsSeries", width: 120 },
     {
       field: "action",
       headerName: "Action",
@@ -41,7 +41,9 @@ export default function ProductList() {
       renderCell: (params) => {
         return (
           <>
-        <Link to={{pathname:"/product/" + params.row._id, movie:params.row}}>
+            <Link
+              to={{ pathname: "/product/" + params.row._id, movie: params.row }}
+            >
               <button className="productListEdit">Edit</button>
             </Link>
             <DeleteOutline

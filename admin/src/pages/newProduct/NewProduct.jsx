@@ -86,8 +86,8 @@ export default function NewProduct() {
           <label>Thumbnail Image</label>
           <input
             type="file"
-            id="imgSmall"
-            name="imgSmall"
+            id="imgSm"
+            name="imgSm"
             onChange={(e) => setImgSm(e.target.files[0])}
           />
         </div>
@@ -154,7 +154,8 @@ export default function NewProduct() {
 
         <div className="addProductItem">
           <label>Is Series ?</label>
-          <select name="active" id="inSeries" onChange={handleChange}>
+          <select name="inSeries" id="inSeries" onChange={handleChange}>
+            <option>Select</option>
             <option value="false">No</option>
             <option value="true">Yes</option>
           </select>

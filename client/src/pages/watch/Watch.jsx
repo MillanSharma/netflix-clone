@@ -14,11 +14,15 @@ export default function Watch() {
       </Link>
       <div className="iframe-container">
         <iframe
-          src="https://www.youtube.com/embed/xl8zdCY-abw?autoplay=1&mute=1&showinfo=0&rel=0&iv_load_policy=3" //this is for testing
-          // src={movie.video} //actual code is suppose to be this
+          className="video"
+          src={
+            movie.video +
+            "?autoplay=1&loop=1&showinfo=0&rel=0&iv_load_policy=3&fs=0&color=white&autohide=0&controls=0&disablekb=1&mute=1"
+          }
+          // src="https://www.youtube.com/embed/T6DJcgm3wNY?autoplay=1&loop=1&showinfo=0&rel=0&iv_load_policy=3&fs=0&color=white&autohide=0&controls=0&disablekb=1&mute=1"
+          // width="250"
+          // height="140"
           frameborder="0"
-          height="100%"
-          width="100%"
         ></iframe>
       </div>
       {/* <video className="video" autoplay progress controls src="" /> */}
