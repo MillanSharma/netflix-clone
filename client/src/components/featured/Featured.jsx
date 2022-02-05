@@ -23,12 +23,12 @@ export default function Featured({ type, setGenre }) {
     getRandomContent();
   }, [type]);
 
-  console.log(content);
+  console.log(type);
   return (
     <div className="featured">
       {type && (
         <div className="category">
-          <span>{type !== "movies" ? "Series" : "Movies"}</span>
+          <span>{type !== "movie" ? "Series" : "Movies"}</span>
           <select
             name="genre"
             id="genre"
@@ -53,7 +53,11 @@ export default function Featured({ type, setGenre }) {
       )}
       <img src={content.img} alt="" />
       <div className="info">
-        <img src={content.imgTitle} alt="" />
+        <img
+          src={content.imgTitle}
+          alt=""
+          onerror="this.style.display='none'"
+        />
         <span className="desc">{content.desc}</span>
         <div className="buttons">
           <button className="play">

@@ -19,7 +19,8 @@ function List({ list }) {
       setSlideNumber(slideNumber - 1);
       listRef.current.style.transform = `translateX(${230 + distance}px)`;
     }
-    if (direction === "right" && slideNumber < 10 - clickLimit) {   //10 total movies in one list item
+    if (direction === "right" && slideNumber < 10 - clickLimit) {
+      //10 total movies in one list item
       setSlideNumber(slideNumber + 1);
       listRef.current.style.transform = `translateX(${-230 + distance}px)`;
     }

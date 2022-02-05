@@ -33,9 +33,10 @@ export default function Register() {
             src="https://1000logos.net/wp-content/uploads/2017/05/Netflix-Logo.png"
             alt=""
           />
-          <Link to="/login">
-            <button  className="loginButton" >Signin</button>
-          </Link>
+
+          <button className="loginButton">
+            <Link className="testLogin" to="/login">Signin</Link>
+          </button>
         </div>
       </div>
       <div className="container">
